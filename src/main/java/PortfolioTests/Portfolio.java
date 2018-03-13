@@ -17,7 +17,7 @@ import java.util.Date;
 
 import static PortfolioTests.Utilities.Utils.driver;
 
-public class App {
+public class Portfolio {
     @BeforeMethod
     public void setUp() {
         Utils.instantiate();
@@ -31,24 +31,21 @@ public class App {
     @Test(testName = "Access Positive Test", description = "Check that you can access the 01 Drums page", groups = {"01Drums"})
     public void accessDrumsPositiveTest() {
 
-        WebElement drums = driver.findElement(By.xpath("/html/body/div[2]/div[1]"));
-        drums.click();
+        driver.findElement(By.xpath("/html/body/div[2]/div[1]")).click();
         Assert.assertEquals(driver.getTitle(), "JS30: 01 Drums");
     }
 
     @Test(testName = "Access Negative Test", description = "Check that you can access the correct 01Drums page", groups = {"01Drums"})
     public void accessDrumsNegativeTest() {
 
-        WebElement drums = driver.findElement(By.xpath("/html/body/div[2]/div[1]"));
-        drums.click();
+        driver.findElement(By.xpath("/html/body/div[2]/div[1]")).click();
         Assert.assertNotEquals(driver.getTitle(), "Lorem Ipsum");
     }
 
     @Test(testName = "Click 'A' Test", description = "Check that you can click the 'A' key and the correct response triggers", groups = {"01Drums"})
     public void aKeyTest() {
 
-        WebElement drums = driver.findElement(By.xpath("/html/body/div[2]/div[1]"));
-        drums.click();
+        driver.findElement(By.xpath("/html/body/div[2]/div[1]")).click();
         WebElement aKey = driver.findElement(By.xpath("/html/body/div/div[1]"));
         Actions builder = new Actions(driver);
         Action sendAKey = builder.moveToElement(aKey).sendKeys("A").build();
@@ -106,13 +103,13 @@ public class App {
         driver.findElement(By.xpath("/html/body/div[2]/div[5]")).click();
         Assert.assertEquals(driver.getTitle(), "Flex Panels \uD83D\uDCAA");
         driver.manage().window().maximize();
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             String fileName = driver.getTitle().concat(new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date()));
             System.out.println(fileName);
             FileUtils.copyFile(scrFile, new File("target/" + fileName + ".png"));
         } catch (IOException e) {
-            System.out.println("Failed to save screnshot.");
+            System.out.println("Failed to save screenshot.");
             e.printStackTrace();
         }
     }
