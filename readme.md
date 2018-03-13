@@ -8,4 +8,6 @@ This repository contains the automated tests I have made for my [personal JS30 p
 
 It's powered by the terrific trio of Selenium, Java, and TestNG.
 
-I'll soon start documenting the various challenges I encountered while automating the quality assurance tasks for my portfolio on Medium, so stay tuned for more insight into how I work.
+I've started documenting the various challenges I encountered while automating the quality assurance tasks for my portfolio on Medium, so check it out for more insight into how I work:
+
+[Web Testing with Selenium Webdriver Part 1: Start with basic tests](https://medium.com/@andrey.dobra/web-testing-with-selenium-webdriver-part-1-start-with-basic-tests-e87c2997154b)
