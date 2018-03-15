@@ -28,18 +28,11 @@ public class Portfolio {
         driver.close();
     }
 
-    @Test(testName = "Access Positive Test", description = "Check that you can access the 01 Drums page", groups = {"01Drums"})
+    @Test(testName = "Access Test", description = "Check that you can access the 01 Drums page", groups = {"01Drums"})
     public void accessDrumsPositiveTest() {
 
         driver.findElement(By.xpath("/html/body/div[2]/div[1]")).click();
         Assert.assertEquals(driver.getTitle(), "JS30: 01 Drums");
-    }
-
-    @Test(testName = "Access Negative Test", description = "Check that you can access the correct 01Drums page", groups = {"01Drums"})
-    public void accessDrumsNegativeTest() {
-
-        driver.findElement(By.xpath("/html/body/div[2]/div[1]")).click();
-        Assert.assertNotEquals(driver.getTitle(), "Lorem Ipsum");
     }
 
     @Test(testName = "Click 'A' Test", description = "Check that you can click the 'A' key and the correct response triggers", groups = {"01Drums"})
@@ -51,6 +44,19 @@ public class Portfolio {
         Action sendAKey = builder.moveToElement(aKey).sendKeys("A").build();
         sendAKey.perform();
         Assert.assertEquals(aKey.getAttribute("class"), "key playing");
+    }
+
+    @Test(testName = "Listen for Sound", description = "Check that, when clicking the 'A' key, a sound is played", groups = {"01Drums"})
+    public void soundPlayTest() throws InterruptedException {
+
+        driver.findElement(By.xpath("/html/body/div[2]/div[1]")).click();
+        WebElement aKey = driver.findElement(By.xpath("/html/body/div/div[1]"));
+        Actions builder = new Actions(driver);
+        Action sendAKey = builder.moveToElement(aKey).sendKeys("A").build();
+        sendAKey.perform();
+        Thread.sleep(1000);
+        WebElement audio = driver.findElement(By.tagName("audio"));
+        Assert.assertNotEquals(audio.getAttribute("currentTime"), 0);
     }
 
     @Test(testName = "Back from Drums Test", description = "Check that you can go back from the 01 Drums page", groups = {"01Drums"})

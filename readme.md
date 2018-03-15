@@ -11,3 +11,5 @@ It's powered by the terrific trio of Selenium, Java, and TestNG.
 I've started documenting the various challenges I encountered while automating the quality assurance tasks for my portfolio on Medium, so check it out for more insight into how I work:
 
 [Web Testing with Selenium Webdriver Part 1: Start with basic tests](https://medium.com/@andrey.dobra/web-testing-with-selenium-webdriver-part-1-start-with-basic-tests-e87c2997154b)
+
+[Web Testing with Selenium Webdriver Part 2: Dealing with CSS Properties and Sound](https://medium.com/@andrey.dobra/web-testing-with-selenium-webdriver-part-2-dealing-with-css-properties-and-sound-847968161f1e)
