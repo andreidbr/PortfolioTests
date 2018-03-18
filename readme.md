@@ -13,3 +13,5 @@ I've started documenting the various challenges I encountered while automating t
 [Web Testing with Selenium Webdriver Part 1: Start with basic tests](https://medium.com/@andrey.dobra/web-testing-with-selenium-webdriver-part-1-start-with-basic-tests-e87c2997154b)
 
 [Web Testing with Selenium Webdriver Part 2: Dealing with CSS Properties and Sound](https://medium.com/@andrey.dobra/web-testing-with-selenium-webdriver-part-2-dealing-with-css-properties-and-sound-847968161f1e)
+
+[Web Testing with Selenium Webdriver Part 3: Using for Loops](https://medium.com/@andrey.dobra/web-testing-using-selenium-webdriver-part-3-using-for-loops-6ac711a897b)

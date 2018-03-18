@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static PortfolioTests.Utilities.Utils.driver;
 
@@ -56,7 +57,44 @@ public class Portfolio {
         sendAKey.perform();
         Thread.sleep(1000);
         WebElement audio = driver.findElement(By.tagName("audio"));
-        Assert.assertNotEquals(audio.getAttribute("currentTime"), 0);
+        Assert.assertNotEquals(audio.getAttribute("currentTime"), "0");
+    }
+
+    @Test(testName = "Check all sounds", description = "Check that, when clicking every key, a sound is played", groups = {"01Drums"})
+    public void soundsPlayTest() throws InterruptedException {
+
+        driver.findElement(By.xpath("/html/body/div[2]/div[1]")).click();
+        List<WebElement> keyList = driver.findElements(By.className("key"));
+        List<WebElement> audioList = driver.findElements(By.tagName("audio"));
+        Actions builder = new Actions(driver);
+        for (int i = 0; i < keyList.size(); i++) {
+            Action sendKey = builder.moveToElement(keyList.get(i)).sendKeys(String.valueOf(keyList.get(i).getText().charAt(0))).build();
+            sendKey.perform();
+            Thread.sleep(1000);
+            Assert.assertNotEquals(audioList.get(i).getAttribute("currentTime"), "0");
+        }
+    }
+
+    @Test(testName = "Access 06 Filter Test", description = "Check that you can access the 06 Filter page", groups = {"06Filter"})
+    public void accessFilterTest() {
+
+        driver.findElement(By.xpath("/html/body/div[2]/div[6]")).click();
+        Assert.assertEquals(driver.getTitle(), "Type Ahead \uD83D\uDC40");
+    }
+
+    @Test(testName = "06 Filter Functionality Test", description = "Check that the 06 Filter page functions correctly", groups = {"06Filter"})
+    public void verifyFilterTest() throws InterruptedException {
+
+        driver.findElement(By.xpath("/html/body/div[2]/div[6]")).click();
+        driver.findElement(By.xpath("/html/body/form/input")).sendKeys("an");
+        Thread.sleep(500);
+        driver.findElement(By.xpath("/html/body/form/input")).sendKeys("dr");
+        if (driver.findElement(By.className("name")).isDisplayed()) {
+            List<WebElement> resultList = driver.findElements(By.className("name"));
+            for (WebElement result : resultList) {
+                Assert.assertTrue(result.getText().toLowerCase().contains("andr"));
+            }
+        }
     }
 
     @Test(testName = "Back from Drums Test", description = "Check that you can go back from the 01 Drums page", groups = {"01Drums"})
